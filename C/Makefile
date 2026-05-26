@@ -74,5 +74,5 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean re FORCE
+.PHONY: all clean fclean re grace colleen sullyFORCE
 FORCE:
