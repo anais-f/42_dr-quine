@@ -6,9 +6,9 @@ void foo() {
 
 /* Comment out of main function */
 int main() {
-	char *code = "#include <stdio.h>%c%cvoid foo() {%c%creturn;%c}%c%c/* Comment out of main function */%cint main() {%c%cchar *code = %c%s%c;%c%c/* Comment in the main function */%c%cprintf(code, 10, 10, 10, 9, 10, 10, 10, 10, 10, 9, 34, code, 34, 10, 9, 10, 9, 10, 9, 10, 9, 10);%c%cfoo();%c%creturn 0;%c}";
+	char *code = "#include <stdio.h>%1$c%1$cvoid foo() {%1$c	return;%1$c}%1$c%1$c/* Comment out of main function */%1$cint main() {%1$c	char *code = %2$c%3$s%2$c;%1$c	/* Comment in the main function */%1$c	printf(code, 10, 34, code);%1$c	foo();%1$c	return 0;%1$c}";
 	/* Comment in the main function */
-	printf(code, 10, 10, 10, 9, 10, 10, 10, 10, 10, 9, 34, code, 34, 10, 9, 10, 9, 10, 9, 10, 9, 10);
+	printf(code, 10, 34, code);
 	foo();
 	return 0;
 }
