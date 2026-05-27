@@ -1,19 +1,12 @@
 #include <stdio.h>
-#include <fnctl.h>
 
+/* Comment */
 int main() {
-    int f = open("Grace_kid.c", O_CREATE | O_RDWR, 0644);
-
+	FILE *file = fopen("Grace_kid.c", "w");
+	char *code = "#include <stdio.h>%c%c/* Comment */%cint main() {%c%cFILE *file = fopen(%cGrace_kid.c%c, %cw%c);%c%cchar *code = %c%s%c;%c%cif (file != NULL) {%c%c%cfprintf(file, code, 10, 10, 10, 10, 9, 34, 34, 34, 34, 10, 9, 34, code, 34, 10, 9,10, 9, 9, 10, 9, 9, 10, 9, 10, 9, 10, 10);%c%c%cfclose(file);%c%c}%c%creturn 0;%c}%c";
+	if (file != NULL) {
+		fprintf(file, code, 10, 10, 10, 10, 9, 34, 34, 34, 34, 10, 9, 34, code, 34, 10, 9,10, 9, 9, 10, 9, 9, 10, 9, 10, 9, 10, 10);
+		fclose(file);
+	}
+	return 0;
 }
-
-
-
-/*
-When executed, the program writes in a file named Grace_kid.c / Grace_kid.s
-the source code of the file used to compile the program.
-• The C source code must strictly contain:
-◦ No main declared (no functions declared at all).
-◦ Exactly three #define.
-◦ One comment.
-• The program will run by calling a macro.
-*/
