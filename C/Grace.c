@@ -1,12 +1,8 @@
 #include <stdio.h>
 
 /* Comment */
-int main() {
-	FILE *file = fopen("Grace_kid.c", "w");
-	char *code = "#include <stdio.h>%c%c/* Comment */%cint main() {%c%cFILE *file = fopen(%cGrace_kid.c%c, %cw%c);%c%cchar *code = %c%s%c;%c%cif (file != NULL) {%c%c%cfprintf(file, code, 10, 10, 10, 10, 9, 34, 34, 34, 34, 10, 9, 34, code, 34, 10, 9,10, 9, 9, 10, 9, 9, 10, 9, 10, 9, 10, 10);%c%c%cfclose(file);%c%c}%c%creturn 0;%c}%c";
-	if (file != NULL) {
-		fprintf(file, code, 10, 10, 10, 10, 9, 34, 34, 34, 34, 10, 9, 34, code, 34, 10, 9,10, 9, 9, 10, 9, 9, 10, 9, 10, 9, 10, 10);
-		fclose(file);
-	}
-	return 0;
-}
+#define FILE_NAME "Grace_kid.c"
+#define CODE "#include <stdio.h>%c%c/* Comment */%c#define FILE_NAME %cGrace_kid.c%c%c#define CODE %c%s%c%c#define MAIN int main() { FILE *file = fopen(FILE_NAME, %cw%c); char *code = CODE ; if (file != NULL) { fprintf(file, code, 10, 10, 10, 34, 34, 10, 34, code, 34, 10, 34, 34, 10, 10, 10); fclose(file); } return 0; }%c%cMAIN%c"
+#define MAIN int main() { FILE *file = fopen(FILE_NAME, "w"); char *code = CODE ; if (file != NULL) { fprintf(file, code, 10, 10, 10, 34, 34, 10, 34, code, 34, 10, 34, 34, 10, 10, 10); fclose(file); } return 0; }
+
+MAIN
