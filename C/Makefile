@@ -70,9 +70,9 @@ clean :
 	@echo "Nothing to clean (no object files)"
 
 fclean : clean
-	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
+	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c tmp Sully_0.c Sully_1.c Sully_2.c Sully_3.c Sully_4.c Sully_5.c
 
 re : fclean all
 
-.PHONY: all clean fclean re grace colleen sullyFORCE
+.PHONY: all clean fclean re grace colleen sully FORCE
 FORCE:

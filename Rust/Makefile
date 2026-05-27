@@ -19,6 +19,6 @@ clean:
 	@echo "Nothing to clean (no object files)"
 
 fclean: clean
-	rm -f $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
+	rm -f $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.rs tmp
 
 re: fclean all
