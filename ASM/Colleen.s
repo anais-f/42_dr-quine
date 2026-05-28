@@ -1,17 +1,36 @@
 global _start
 
 section .data
-message db "Hello world", 10 ; le texte + l'ascii 10 pour le \n
+    code db "global _start", 10
+    code_len equ $ - code
+
 
 section .text
+foo:
+    ret
+
 _start:
-	mov rax, 1 ; appel a write
-	mov rdi, 1 ; param du stdin
-	mov rsi, message ; param du texte
-	mov rdx, 11+1 ; le registre et la taille -> param de la taille
-	syscall ; faire le syscall
+	push rcx ; on sauvegarde le compteur de boucle sur la pile
+	xor rcx, rcx ; on met rcx a 0 pour le compteur de boucle
 
-	mov rax, 60 ; exit
-	mov rdi, 0 ; code de retour
-	syscall ; on ferme le programme
+.loop:
+	cmp rcx, code_len ; on compare le compteur de boucle a la taille du code
+	jg	.endloop
 
+	mov rax, 1
+	mov rdi, 1
+	lea rsi, [rel code]
+	add rsi, rcx
+	mov rdx, 1
+	syscall
+
+	inc rcx
+	jmp .loop
+
+.endloop:
+
+    call    foo     ; appel de foo
+    mov rax, 60     ; exit
+	mov rdi, 0      ; code de retour
+	syscall         ; on ferme le programme
+	

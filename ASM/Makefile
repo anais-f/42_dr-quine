@@ -49,18 +49,17 @@ grace: $(NAME_GRACE)
 sully: $(NAME_SULLY)
 
 $(NAME_COLLEEN): $(OBJS_COLLEEN)
-	$(LD) $(LDFLAGS) $^ -o $@
+	@$(LD) $(LDFLAGS) $^ -o $@
 
 $(NAME_GRACE): $(OBJS_GRACE)
-	$(LD) $(LDFLAGS) $^ -o $@
+	@$(LD) $(LDFLAGS) $^ -o $@
 
 $(NAME_SULLY): $(OBJS_SULLY)
-	$(LD) $(LDFLAGS) $^ -o $@
+	@$(LD) $(LDFLAGS) $^ -o $@
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.s
 	@$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@
-
 
 clean :
 	$(RM) $(OBJS_DIR)
