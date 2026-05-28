@@ -18,17 +18,15 @@ OBJS_COLLEEN = $(OBJS_DIR)/Colleen.o
 OBJS_GRACE = $(OBJS_DIR)/Grace.o
 OBJS_SULLY = $(OBJS_DIR)/Sully.o
 
-INCS = ./incs
-
 # **********************************COMMANDS**************************************** #
 
 CC = nasm
 
+GCC = gcc
+
 LD = ld
 
 CFLAGS = -f elf64
-
-CPPFLAGS = -I$(INCS)
 
 LDFLAGS = 
 
@@ -49,17 +47,17 @@ grace: $(NAME_GRACE)
 sully: $(NAME_SULLY)
 
 $(NAME_COLLEEN): $(OBJS_COLLEEN)
-	@$(LD) $(LDFLAGS) $^ -o $@
+	@$(GCC) $^ -o $@
 
 $(NAME_GRACE): $(OBJS_GRACE)
-	@$(LD) $(LDFLAGS) $^ -o $@
+	@$(GCC) $^ -o $@
 
 $(NAME_SULLY): $(OBJS_SULLY)
-	@$(LD) $(LDFLAGS) $^ -o $@
+	@$(GCC) $^ -o $@
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.s
 	@$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 clean :
 	$(RM) $(OBJS_DIR)
