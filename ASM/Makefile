@@ -6,9 +6,9 @@ NAME_SULLY = Sully
 
 SRCS_DIR = .
 
-SRCS_COLLEEN = Colleen.c
-SRCS_GRACE = Grace.c
-SRCS_SULLY = Sully.c
+SRCS_COLLEEN = Colleen.s
+SRCS_GRACE = Grace.s
+SRCS_SULLY = Sully.s
 
 SRCS_DIR = .
 
@@ -18,21 +18,19 @@ OBJS_COLLEEN = $(OBJS_DIR)/Colleen.o
 OBJS_GRACE = $(OBJS_DIR)/Grace.o
 OBJS_SULLY = $(OBJS_DIR)/Sully.o
 
-DEPS_COLLEEN = $(OBJS_DIR)/Colleen.d
-DEPS_GRACE = $(OBJS_DIR)/Grace.d
-DEPS_SULLY = $(OBJS_DIR)/Sully.d
-
-DEPS = $(DEPS_COLLEEN) $(DEPS_GRACE) $(DEPS_SULLY)
-
 INCS = ./incs
 
 # **********************************COMMANDS**************************************** #
 
-CC = cc
+CC = nasm
 
-CFLAGS = -Werror -Wextra -Wall -g3 -MMD -MP
+LD = ld
+
+CFLAGS = -f elf64
 
 CPPFLAGS = -I$(INCS)
+
+LDFLAGS = 
 
 RM = rm -rf
 
@@ -41,8 +39,6 @@ DIR_DUP = mkdir -p $(@D)
 MAKEFLAGS += --no-print-directory
 
 # **********************************RULES**************************************** #
-
--include $(DEPS)
 
 all:	$(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY)
 
@@ -53,26 +49,30 @@ grace: $(NAME_GRACE)
 sully: $(NAME_SULLY)
 
 $(NAME_COLLEEN): $(OBJS_COLLEEN)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS) $^ -o $@
 
 $(NAME_GRACE): $(OBJS_GRACE)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS) $^ -o $@
 
 $(NAME_SULLY): $(OBJS_SULLY)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	$(LD) $(LDFLAGS) $^ -o $@
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.s
 	@$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 
 clean :
-	@$(RM) $(DIR_DUP)
+	$(RM) $(OBJS_DIR)
 
 fclean : clean
-	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c tmp Sully_0.c Sully_1.c Sully_2.c Sully_3.c Sully_4.c Sully_4 Sully_3 Sully_2 Sully_1 Sully_0
+	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.s tmp Sully_0.s Sully_1.s Sully_2.s Sully_3.s Sully_4.s Sully_4 Sully_3 Sully_2 Sully_1 Sully_0
 
 re : fclean all
 
 .PHONY: all clean fclean re grace colleen sully FORCE
 FORCE:
+
+
+
+
