@@ -67,10 +67,10 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 
 
 clean :
-	@$(RM) $(DIR_DUP)
+	@$(RM) $(OBJS_DIR)
 
 fclean : clean
-	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c tmp Sully_0.c Sully_1.c Sully_2.c Sully_3.c Sully_4.c Sully_4 Sully_3 Sully_2 Sully_1 Sully_0
+	$(RM) $(NAME_COLLEEN) $(NAME_GRACE) $(NAME_SULLY) Grace_kid.c tmp Sully_0.c Sully_1.c Sully_2.c Sully_3.c Sully_4.c Sully_5.c Sully_5 Sully_4 Sully_3 Sully_2 Sully_1 Sully_0
 
 re : fclean all
 
