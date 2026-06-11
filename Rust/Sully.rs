@@ -4,7 +4,7 @@ use std::process::Command;
 
 fn main() {
     let i = 5;
-    let next = i - 1;
+    let next = if file!().contains("_") { i - 1 } else { 5 };
     let filename = format!("Sully_{}.rs", next);
     let code = r#"use std::fs::File;
 use std::io::Write;
@@ -12,7 +12,7 @@ use std::process::Command;
 
 fn main() {
     let i = %I%;
-    let next = i - 1;
+    let next = if file!().contains("_") { i - 1 } else { 5 };
     let filename = format!("Sully_{}.rs", next);
     let code = r$"?"$;
 
